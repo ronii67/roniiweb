@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RONII WEB</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --primary: #00bfff;
+      --secondary: #f4f4f4;
+      --dark: #333;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+     header {
+      background: var(--secondary);
+      padding: 40px 20px;
+      text-align: center;
+      
+    }
+    .profile-img {
+      width: 320px;
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      margin-bottom: 15px;
+    }
+    h1 {
+      font-size: 4em;
+      margin-bottom: 5px;
+    }
+    p.role {
+      color: var(--primary);
+      font-weight: bold;
+    }
+    .social-icons a {
+      color: var(--dark);
+      margin: 0 10px;
+      font-size: 3.2em;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    footer {
+      background: var(--secondary);
+      padding: 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    footer p{
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-bg"></div>
+  <img src="images/profile.jpg" alt="RONII WEB" class="profile-img">
+  <h1>HEY , I'M RONII</h1>
+  <p class="role"></p>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="https://instagram.com/ronii__04"><i class="fab fa-instagram"></i></a>
+  </div>
+</header>
+
+  <section>
+    <h2>About Me</h2>
+    <p>Hello! I'm Ronii, a passionate machine designer based in New York with over 6 years of experience. I craft clean, engaging, and user-friendly interfaces that enhance user experience and drive business goals.</p>
+  </section>
+
+  <section>
+    <h2>What I Do</h2>
+    <p>I design intuitive digital experiences. From wireframes to polished interfaces, I help businesses translate their vision into seamless products and websites that users love.</p>
+  </section>
+
+  <section>
+  <h2>PHOTOS</h2>
+  <div class="slider" id="slider">
+    <div class="slides" id="slides">
+      <img src="images/photo1.jpg" alt="Photo 1">
+      <img src="images/photo2.jpg" alt="Photo 2">
+      <img src="images/photo3.jpg" alt="Photo 3">
+    </div>
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+  </div>
+</section>
+
+
+
+  <footer>
+    <h2>Get in Touch</h2>
+    <p>Email: ronakmachhi777@gmail.com</p>
+    <p>Phone: 9510322828</p>
+  </footer>
+</body>
+<script>
+  let currentIndex = 0;
+  const slides = document.getElementById('slides');
+  const totalSlides = slides.children.length;
+
+  function showSlide(index) {
+    if (index < 0) index = totalSlides - 1;
+    if (index >= totalSlides) index = 0;
+    slides.style.transform = `translateX(-${index * 100}%)`;
+    currentIndex = index;
+  }
+
+  function moveSlide(step) {
+    showSlide(currentIndex + step);
+  }
+
+  // Optional: Auto-slide every 5 seconds
+  setInterval(() => moveSlide(1), 5000);
+</script>
+
+</html>
