@@ -43,11 +43,7 @@
       color: var(--primary);
       font-weight: bold;
     }
-    .social-icons a {
-      color: var(--dark);
-      margin: 0 10px;
-      font-size: 2em;
-    }
+  
     section {
       padding: 40px 20px;
       max-width: 900px;
@@ -62,20 +58,122 @@
     footer p{
       margin: 5px 0;
     }
+
+
+
+
+
+/* Toggle switch */
+.toggle-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { display: none; }
+
+.slider-toggle {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider-toggle:before {
+  position: absolute;
+  content: "";
+  height: 26px; width: 26px;
+  left: 4px; bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider-toggle {
+  background-color: #2196F3;
+}
+
+input:checked + .slider-toggle:before {
+  transform: translateX(26px);
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+header.dark-mode, footer.dark-mode {
+  background-color: #1e1e1e;
+}
+
+.social-icon.dark-mode {
+  color: #f0f0f0;
+}
+
+.lightbox.dark-mode {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 1.8em;
+  color: var(--dark);
+  transition: color 0.3s ease;
+  z-index: 10;
+}
+
+body.dark-mode .theme-toggle {
+  color: #fff;
+}
+
+/* Optional: Smooth transitions for body and elements */
+body {
+  transition: background 0.4s, color 0.4s;
+}
+
+header,
+footer {
+  transition: background 0.4s, color 0.4s;
+}
+
+
+
   </style>
 </head>
 <body>
 <header>
+
+
+<div class="theme-toggle" id="themeToggle">
+  <i class="fas fa-moon" id="themeIcon"></i>
+</div>
+
+
+
   <div class="header-bg"></div>
-  <img src="images/profile.jpg" alt="RONII WEB" class="profile-img">
+  <img src="images/profile.jpg" alt="PROFILE WEB" class="profile-img">
   <h2>HEY , I'M RONII</h2>
   <p class="role"></p>
   <div class="social-icons">
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-    <a href="https://instagram.com/ronii__04"><i class="fab fa-instagram"></i></a>
-  </div>
+      <a href="https://facebook.com/your_id" class="social-icon"><i class="fab fa-facebook"></i></a>
+      <a href="https://github.com/your_id" class="social-icon"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/your_id" class="social-icon"><i class="fab fa-linkedin"></i></a>
+      <a href="https://instagram.com/ronii__04" class="social-icon"><i class="fab fa-instagram"></i></a>
+    </div>
 </header>
 
   <section>
@@ -101,6 +199,14 @@
   </div>
 </section>
 
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+  <span class="close" onclick="closeLightbox()">&times;</span>
+  <img class="lightbox-content" id="lightbox-img">
+</div>
+
+
+
   <footer>
     <h2>CONTACT</h2>
     <p>Email: roniimachhi07@gmail.com</p>
@@ -125,6 +231,51 @@
 
   // Optional: Auto-slide every 5 seconds
   setInterval(() => moveSlide(1), 5000);
+
+
+
+
+// Lightbox logic
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const images = document.querySelectorAll('#slides img');
+
+images.forEach(img => {
+  img.addEventListener('click', () => {
+    lightbox.style.display = 'block';
+    lightboxImg.src = img.src;
+  });
+});
+
+function closeLightbox() {
+  lightbox.style.display = 'none';
+}
+
+
+
+
+
+
+// Dark mode toggle
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  document.querySelector('header').classList.toggle('dark-mode');
+  document.querySelector('footer').classList.toggle('dark-mode');
+
+  // Toggle icon
+  if (document.body.classList.contains('dark-mode')) {
+    themeIcon.classList.replace('fa-moon', 'fa-sun');
+  } else {
+    themeIcon.classList.replace('fa-sun', 'fa-moon');
+  }
+});
+
+
+
+
 </script>
 
 </html>
